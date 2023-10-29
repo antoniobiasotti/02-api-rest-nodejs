@@ -5,15 +5,17 @@ import { knex } from './dabase'
 const app = fastify()
 
 app.get('/hello', async () => {
-  const transaction = await knex('transactions')
-    .insert({
-      id: crypto.randomUUID(),
-      title: 'Transação de teste',
-      amount: 1000,
-    })
-    .returning('*')
+  // const transaction = await knex('transactions')
+  //   .insert({
+  //     id: crypto.randomUUID(),
+  //     title: 'Transação de teste',
+  //     amount: 1000,
+  //   })
+  //   .returning('*')
 
-  return transaction
+  const transactions = await knex('transactions').select('*')
+
+  return transactions
 })
 
 app

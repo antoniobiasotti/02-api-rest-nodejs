@@ -13,7 +13,9 @@ app.get('/hello', async () => {
   //   })
   //   .returning('*')
 
-  const transactions = await knex('transactions').select('*')
+  const transactions = await knex('transactions')
+    .where('amount', 500)
+    .select('*')
 
   return transactions
 })
